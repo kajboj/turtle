@@ -17,7 +17,8 @@ cabal-version:       >=1.10
 
 executable Turtle
   main-is:             Main.hs
-  -- other-modules:       Utils
+  other-modules:       Command
+                     , Sierpinski
   -- other-extensions:
   build-depends:       base >=4.7 && <4.8
                      , gloss
