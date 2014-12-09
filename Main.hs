@@ -16,9 +16,10 @@ type Line = (G.Point, G.Point)
 
 type Turtle = (Float, G.Point)
 
-main = do
-  let points = turtle (Rot (-90):sierp 8)
-    in
+main =
+  let points = turtle (Rot (-90):sierp 7)
+    in do
+      putStrLn $ show points
       G.display (G.InWindow "Turtle" windowSize (0, 0))
         G.white $ G.line points
 
