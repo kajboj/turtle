@@ -1,4 +1,4 @@
-module Sierpinski where
+module Sierpinski (sierp) where
 
 import Command
 

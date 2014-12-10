@@ -2,9 +2,11 @@ import Control.Applicative
 import qualified Graphics.Gloss as G
 import Graphics.Gloss.Data.Vector (rotateV)
 import Graphics.Gloss.Geometry.Angle (degToRad)
+import System.Environment
 
 import Command
 import Sierpinski
+import Dragon
 
 screenRes = (1366, 768)::(Int, Int)
 proportion = (2, 2)
@@ -16,8 +18,17 @@ type Line = (G.Point, G.Point)
 
 type Turtle = (Float, G.Point)
 
-main =
-  let points = turtle (Rot (-90):sierp 7)
+fractalType "dragon" = dragon
+fractalType "sierp"  = sierp
+intArg s = (read s) :: Int
+floatArg s = (read s) :: Float
+
+main = do
+  args <- getArgs
+  let fractal = fractalType (args !! 0)
+      iter    = intArg (args !! 1)
+      rot     = floatArg (args !! 2)
+      points = turtle (Rot rot:fractal iter)
     in do
       putStrLn $ show points
       G.display (G.InWindow "Turtle" windowSize (0, 0))
